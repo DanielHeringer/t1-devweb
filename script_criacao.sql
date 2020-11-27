@@ -54,7 +54,7 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `medical_schedule`.`Consulta`
+-- Table `medical_schedule`.`Consulta` OK
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `medical_schedule`.`Consulta` (
   `cons_id` INT NOT NULL AUTO_INCREMENT,
