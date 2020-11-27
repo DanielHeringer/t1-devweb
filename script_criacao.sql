@@ -52,7 +52,8 @@ CREATE TABLE IF NOT EXISTS `medical_schedule`.`Paciente` (
   UNIQUE INDEX `paci_cpf_UNIQUE` (`paci_cpf` ASC) VISIBLE)
 ENGINE = InnoDB;
 
-
+-- one piece é bom
+-- piratinha q estica uhul
 -- -----------------------------------------------------
 -- Table `medical_schedule`.`Consulta` OK
 -- -----------------------------------------------------
