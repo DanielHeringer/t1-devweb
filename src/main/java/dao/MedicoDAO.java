@@ -12,7 +12,7 @@ import domain.Medico;
 public class MedicoDAO extends GenericDAO {
 
     public void insert(Medico medico) {    
-        String sql = "INSERT INTO Medico ( medi_email, medi_senha, medi_crm, medi_nome, medi_telefone) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Medico ( medi_email, medi_senha, medi_crm, medi_nome, medi_telefone, medi_especialidade) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);;    
@@ -22,6 +22,7 @@ public class MedicoDAO extends GenericDAO {
             statement.setString(3, medico.getCRM());
             statement.setString(4, medico.getNome());
             statement.setString(5, medico.getTelefone());
+            statement.setString(6, medico.getEspecialidade());
             statement.executeUpdate();
             statement.close();
             conn.close();
@@ -44,7 +45,8 @@ public class MedicoDAO extends GenericDAO {
                 String medi_crm = resultSet.getString("medi_crm");
                 String medi_nome = resultSet.getString("medi_nome");
                 String medi_telefone = resultSet.getString("medi_telefone");
-                Medico medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone);
+                String medi_especialidade = resultSet.getString("medi_especialidade");
+                Medico medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone, medi_especialidade);
                 listaMedico.add(medico);
             }
             resultSet.close();
@@ -105,7 +107,8 @@ public class MedicoDAO extends GenericDAO {
                 String medi_crm = resultSet.getString("medi_crm");
                 String medi_nome = resultSet.getString("medi_nome");
                 String medi_telefone = resultSet.getString("medi_telefone");
-                medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone);
+                String medi_especialidade = resultSet.getString("medi_especialidade");
+                medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone, medi_especialidade);
             }
             resultSet.close();
             statement.close();
@@ -130,7 +133,8 @@ public class MedicoDAO extends GenericDAO {
                 String medi_crm = resultSet.getString("medi_crm");
                 String medi_nome = resultSet.getString("medi_nome");
                 String medi_telefone = resultSet.getString("medi_telefone");
-                medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone);
+                String medi_especialidade = resultSet.getString("medi_especialidade");
+                medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone, medi_especialidade);
             }
             resultSet.close();
             statement.close();
@@ -154,7 +158,8 @@ public class MedicoDAO extends GenericDAO {
                 String medi_crm = resultSet.getString("medi_crm");
                 String medi_nome = resultSet.getString("medi_nome");
                 String medi_telefone = resultSet.getString("medi_telefone");
-                medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone);
+                String medi_especialidade = resultSet.getString("medi_especialidade");
+                medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone, medi_especialidade);
             }
             resultSet.close();
             statement.close();

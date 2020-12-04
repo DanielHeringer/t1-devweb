@@ -1,13 +1,10 @@
 domain\Consulta.class
 controller\AdminController.class
+controller\LoginController.class
 util\Erro.class
+dao\PacienteDAO.class
+domain\Paciente.class
 domain\Medico.class
 dao\ConsultaDAO.class
-dao\MedicoDAO.class
-controller\LoginController.class
-controller\UsuarioController.class
-domain\Usuario.class
-dao\PacienteDAO.class
-dao\UsuarioDAO.class
-domain\Paciente.class
 dao\GenericDAO.class
+dao\MedicoDAO.class

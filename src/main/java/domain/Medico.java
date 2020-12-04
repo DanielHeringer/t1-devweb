@@ -8,21 +8,23 @@ public class Medico {
 	private String medi_crm;
 	private String medi_nome;
 	private String medi_telefone;
+        private String medi_especialidade;
 
 	public Medico(Long medi_id) {
 		this.medi_id = medi_id;
 	}
 	
-	public Medico(String medi_email, String medi_senha, String medi_crm, String medi_nome, String medi_telefone) {
+	public Medico(String medi_email, String medi_senha, String medi_crm, String medi_nome, String medi_telefone, String medi_especialidade) {
 		super();
 		this.medi_email = medi_email;
 		this.medi_senha = medi_senha;
 		this.medi_crm = medi_crm;
 		this.medi_nome = medi_nome;
 		this.medi_telefone = medi_telefone;
+		this.medi_especialidade = medi_especialidade;
 	}
 	
-	public Medico(Long medi_id, String medi_email, String medi_senha, String medi_crm, String medi_nome, String medi_telefone) {
+	public Medico(Long medi_id, String medi_email, String medi_senha, String medi_crm, String medi_nome, String medi_telefone, String medi_especialidade) {
 		super();
 		this.medi_id = medi_id;
 		this.medi_email = medi_email;
@@ -30,6 +32,7 @@ public class Medico {
 		this.medi_crm = medi_crm;
 		this.medi_nome = medi_nome;
 		this.medi_telefone = medi_telefone;
+		this.medi_especialidade = medi_especialidade;
 	}
 	
 	public Long getId() {
@@ -76,5 +79,12 @@ public class Medico {
 		this.medi_crm = medi_crm;
 	}
 	
+        public String getEspecialidade() {
+            return medi_especialidade;
+        }
+
+        public void setEspecialidade(String medi_especialidade) {
+            this.medi_especialidade = medi_especialidade;
+        }
 
 }

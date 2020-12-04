@@ -1,18 +1,18 @@
-<%@ page contentType="text/html" pageEncoding="UTF-8"%> <%@ page
-isELIgnored="false"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-prefix="c" %>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Admin</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    />
-  </head>
-  <body>
-      
-  </body>
-</html>
+<fmt:bundle basename="message">
 
+	<head>
+            <title>CRUD</title>
+	</head>
+
+        <body>
+            <a href="medico">Lista Médicos</a>
+            <a href="paciente">Lista Pacientes</a>
+        </body>
+</fmt:bundle>
+</html>

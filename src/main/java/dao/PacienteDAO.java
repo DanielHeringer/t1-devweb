@@ -25,7 +25,7 @@ public class PacienteDAO extends GenericDAO {
             statement.setString(5, paciente.getNome());
             statement.setString(6, paciente.getTelefone());
             statement.setString(7, paciente.getSexo());
-            statement.setString(8, paciente.getDataNascimento().toString());
+            statement.setDate(8, paciente.getDataNascimento());
 
             statement.executeUpdate();
             statement.close();
@@ -46,13 +46,13 @@ public class PacienteDAO extends GenericDAO {
                 Long paci_id = resultSet.getLong("paci_id");
                 String paci_email = resultSet.getString("paci_email");
                 String paci_senha = resultSet.getString("paci_senha");
-                String paci_crm = resultSet.getString("paci_crm");
+                String paci_cpf = resultSet.getString("paci_cpf");
                 String paci_nome = resultSet.getString("paci_nome");
                 String paci_telefone = resultSet.getString("paci_telefone");
                 String paci_sexo = resultSet.getString("paci_sexo");
                 Date paci_data = resultSet.getDate("paci_data_nascimento");
 
-                Paciente paciente = new Paciente(paci_id, paci_email, paci_senha, paci_crm, paci_nome, paci_telefone, paci_sexo, paci_data);
+                Paciente paciente = new Paciente(paci_id, paci_email, paci_senha, paci_cpf, paci_nome, paci_telefone, paci_sexo, paci_data);
                 listaPaciente.add(paciente);
             }
             resultSet.close();
