@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import domain.Usuario;
 import util.Erro;
 
 @WebServlet(urlPatterns = "/admin/*")
@@ -25,20 +24,14 @@ public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-    	Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioLogado");
+    	Boolean isAdmin = (Boolean) request.getSession().getAttribute("isAdmin");
+    	Boolean logado = (Boolean) request.getSession().getAttribute("logado");
     	Erro erros = new Erro();
-    	
-    	if (usuario == null) {
-    		response.sendRedirect(request.getContextPath());
-    	} else if (usuario.getPapel().equals("ADMIN")) {
-    		RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/index.jsp");
-            dispatcher.forward(request, response);
-    	} else {
-    		erros.add("Acesso não autorizado!");
-    		erros.add("Apenas Papel [ADMIN] tem acesso a essa página");
-    		request.setAttribute("mensagens", erros);
-    		RequestDispatcher rd = request.getRequestDispatcher("/noAuth.jsp");
-    		rd.forward(request, response);
-    	}
+        if(logado!=null && logado && isAdmin != null && isAdmin){
+            response.sendRedirect(request.getContextPath()+"/logado/admin");
+        }
+        else{
+            response.sendRedirect(request.getContextPath()+"/login.jsp");
+        }
     }
 }

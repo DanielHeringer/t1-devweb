@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import domain.Paciente;
-import domain.Usuario;
 import java.sql.Date;
 
 public class PacienteDAO extends GenericDAO {
