@@ -34,6 +34,9 @@
                     <td colspan="2"> 
                         <input type="submit" name="bOK" value="Entrar"/>
                     </td>
+                    <td colspan="2"> 
+                        <input type="submit" name="medicosOK" value="Listar medicos"/>
+                    </td>
                 </tr>
             </table>
         </form>
