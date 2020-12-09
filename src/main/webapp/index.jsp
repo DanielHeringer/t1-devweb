@@ -38,18 +38,11 @@ prefix="c" %>
               <input type="submit" name="bOK" value="Entrar" />
             </td>
           </tr>
-          <tr>
-            <td>
-              <input type="submit" name="medicosOK" value="Listar medicos" />
-            </td>
-          </tr>
-          <tr>
-            <td>
-                <a href="lista.jsp">Listar medicos por Especialidade</a>
-            </td>
-          </tr>
         </table>
       </form>
+      </br>
+      </br>
+      Lista Medicos: <a href="listaMedicos.jsp">clique aqui</a> 
   </body>
 </html>
 
