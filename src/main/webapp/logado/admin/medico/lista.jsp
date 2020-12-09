@@ -7,7 +7,7 @@
 <fmt:bundle basename="message">
 
 	<head>
-            <title>Lista Medicos</title>
+            <title> <fmt:message key="table.titlem"/></title>
 	</head>
 
 	<body>
@@ -17,28 +17,28 @@
 		%>
 		<div align="center">
 			<h1>
-				CRUD Medicos
+				<fmt:message key="CRUD.medico"/>
 			</h1>
 			<h2>
 				<a href="/<%=contextPath%>/admin/">Voltar</a>
 				&nbsp;&nbsp;&nbsp; <a href="/<%=contextPath%>/admin/medico/cadastro">
-					Novo Médico
+					<fmt:message key="medico.novo"/>
 				</a>
 			</h2>
 		</div>
 		<div align="center">
 			<table border="1">
 				<caption>
-					Lista de Medicos
+					<fmt:message key="table.titlem"/>
 				</caption>
 				<tr>
 					<th>ID</th>
-					<th>Nome</th>
-					<th>Email</th>
+					<th> <fmt:message key="medico.Nome"/></th>
+					<th> <fmt:message key="medico.email"/></th>
 					<th>CRM</th>
-					<th>Telefone</th>
-					<th>Especialidade</th>
-					<th>Alterar</th>
+					<th> <fmt:message key="medico.tel"/></th>
+					<th> <fmt:message key="medico.esp"/></th>
+					<th> <fmt:message key="table.change"/></th>
 					</tr>
 				<c:forEach var="medico" items="${requestScope.listaMedicos}">
 					<tr>
@@ -52,7 +52,7 @@
 								Editar
 						</a> &nbsp;&nbsp;&nbsp;&nbsp; <a
 							href="/<%= contextPath%>/admin/medico/remocao?id=${medico.getId()}"
-							onclick="return confirm('Tem certeza?');">
+							onclick="return confirm('<fmt:message key="confirm.link"/>');">
 								Remover
 						</a></td>
 					</tr>

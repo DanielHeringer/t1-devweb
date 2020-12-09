@@ -11,7 +11,7 @@
                             Atualizar
 			</c:when>
 			<c:otherwise>
-                            Cadastrar
+				<fmt:message key="cadastrar"/>:
 			</c:otherwise>
 		</c:choose>
 	</caption>
@@ -25,45 +25,45 @@
 			value="${paciente.getCPF()}"/></td>
 	</tr>
 	<tr>
-		<td><label for="email"> Email:
+		<td><label for="email"> <fmt:message key="paciente.email"/>:
 		</label></td>
 		<td><input type="text" id="email" name="email" required
 			value="${paciente.getEmail()}"/></td>
 	</tr>
 	<tr>
-		<td><label for="nome">Nome:
+		<td><label for="nome"><fmt:message key="paciente.Nome"/>:
 		</label></td>
 		<td><input type="text" id="nome" name="nome"
 			required value="${paciente.getNome()}" /></td>
 	</tr>
 	<tr>
-		<td><label for="senha"> Senha:
+		<td><label for="senha"><fmt:message key="paciente.senha"/>:
 		</label></td>
 		<td><input type="password" id="senha" name="senha" required
 			/></td>
 	</tr>
 	<tr>
-		<td><label for="telefone"> Telefone:
+		<td><label for="telefone"> <fmt:message key="paciente.tel"/>:
 		</label></td>
 		<td><input type="text" id="telefone" name="telefone" required 
                            value="${paciente.getTelefone()}"
 			/></td>
 	</tr>
 	<tr>
-		<td><label for="sexo"> Sexo:
+		<td><label for="sexo"> <fmt:message key="paciente.sexo"/>:
 		</label></td>
 		<td><input type="text" id="sexo" name="sexo" required 
                            value="${paciente.getSexo()}"
 			/></td>
 	</tr>
 	<tr>
-		<td><label for="data"> Data Nascimento:
+		<td><label for="data"><fmt:message key="paciente.nascimento"/>:
 		</label></td>
 		<td><input type="date" id="data" name="data" required 
 			/></td>
 	</tr>
 	<tr>
 		<td colspan="2" align="center"><input type="submit"
-			value="Salvar" /></td>
+			value="<fmt:message key="save.link"/>" /></td>
 	</tr>
 </table>

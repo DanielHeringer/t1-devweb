@@ -11,8 +11,8 @@
 	</head>
 
         <body>
-            <a href="medico">Lista Médicos</a>
-            <a href="paciente">Lista Pacientes</a>
+            <a href="medico"> <fmt:message key="listar.medico"/></a>
+            <a href="paciente"> <fmt:message key="listar.paciente"/></a>
         </body>
 </fmt:bundle>
 </html>
