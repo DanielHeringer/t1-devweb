@@ -1,6 +1,8 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%> <%@ page
 isELIgnored="false"%> <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
 prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,7 +15,8 @@ prefix="c" %>
     />
   </head>
   <body>
-    <h1>Seja bem-vindo!</h1>
+    <fmt:bundle basename="message">
+      <h1><fmt:message key="saudacoes"/></h1>
     <c:if test="${mensagens.existeErros}">
       <div id="erro">
         <ul>
@@ -26,23 +29,24 @@ prefix="c" %>
       <form method="post" action="dologin.jsp">
         <table>
           <tr>
-            <th>Login:</th>
+            <th><fmt:message key="login"/></th>
             <td><input type="text" name="login" value="${param.login}" /></td>
           </tr>
           <tr>
-            <th>Senha:</th>
+            <th><fmt:message key="senha"/></th>
             <td><input type="password" name="senha" /></td>
           </tr>
           <tr>
             <td>
-              <input type="submit" name="bOK" value="Entrar" />
+              <input type="submit" name="bOK" value="<fmt:message key="entrar"/>" />
             </td>
           </tr>
         </table>
       </form>
       </br>
       </br>
-      Lista Medicos: <a href="listaMedicos.jsp">clique aqui</a> 
+      <fmt:message key="listar.medico"/> <a href="listaMedicos.jsp"><fmt:message key="click"/></a> 
+    </fmt:bundle>
   </body>
 </html>
 

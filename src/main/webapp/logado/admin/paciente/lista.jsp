@@ -7,7 +7,7 @@
 <fmt:bundle basename="message">
 
 	<head>
-            <title>Lista Pacientes</title>
+            <title> <fmt:message key="page.title"/></title>
 	</head>
 
 	<body>
@@ -17,29 +17,29 @@
 		%>
 		<div align="center">
 			<h1>
-				Pacientes
+				<fmt:message key="paciente.welcome"/>
 			</h1>
 			<h2>
 				<a href="/<%=contextPath%>/admin/">Voltar</a>
 				&nbsp;&nbsp;&nbsp; <a href="/<%=contextPath%>/admin/paciente/cadastro">
-					Novo Paciente
+					<fmt:message key="paciente.create"/>
 				</a>
 			</h2>
 		</div>
 		<div align="center">
 			<table border="1">
 				<caption>
-					Lista de Pacientes
+					<fmt:message key="listar.paciente"/>
 				</caption>
 				<tr>
 					<th>ID</th>
-					<th>Nome</th>
-					<th>Email</th>
+					<th><fmt:message key="paciente.Nome"/></th>
+					<th>E-mail</th>
 					<th>CPF</th>
-					<th>Telefone</th>
-					<th>Sexo</th>
-					<th>Data Nascimento</th>
-					<th>Alterar</th>
+					<th><fmt:message key="paciente.tel"/></th>
+					<th><fmt:message key="paciente.sexo"/></th>
+					<th><fmt:message key="paciente.nascimento"/></th>
+					<th><fmt:message key="table.change"/></th>
 					</tr>
 				<c:forEach var="paciente" items="${requestScope.listaPaciente}">
 					<tr>
