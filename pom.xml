@@ -7,7 +7,7 @@
 
 	
         <groupId>com.danielheringer</groupId>
-        <artifactId>trabalho2</artifactId>
+        <artifactId>trabalho</artifactId>
         <version>1</version>
         <packaging>war</packaging>
         <name>trabalho</name>

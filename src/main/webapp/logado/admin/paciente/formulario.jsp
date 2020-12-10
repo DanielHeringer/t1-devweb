@@ -19,9 +19,7 @@
 				<fmt:message key="paciente.welcome"/>
 			</h1>
 			<h2>
-				<a href="lista"> <fmt:message key="paciente.lista"/>
-				</a> &nbsp;&nbsp;&nbsp; <a
-					href="${pageContext.request.contextPath}/logout.jsp"> Logout
+				<a href="${pageContext.request.contextPath}/admin/paciente"> <fmt:message key="paciente.lista"/>
 				</a>
 			</h2>
 		</div>

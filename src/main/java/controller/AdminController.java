@@ -6,7 +6,6 @@ import domain.Medico;
 import domain.Paciente;
 import java.io.IOException;
 import java.sql.Date;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -76,18 +75,17 @@ public class AdminController extends HttpServlet {
                     case "/paciente/cadastro":
                        apresentaFormCadastroP(request, response);
                         break;
-                        //PAREI AQUI, TA DANDO ERRADO
                     case "/paciente/insercao":
                         insereP(request, response);
                         break;
                     case "/paciente/remocao":
-//                        removeP(request, response);
+                        removeP(request, response);
                         break;
                     case "/paciente/edicao":
-//                        apresentaFormEdicaoP(request, response);
+                        apresentaFormEdicaoP(request, response);
                         break;
                     case "/paciente/atualizacao":
-//                        atualizeP(request, response);
+                        atualizeP(request, response);
                         break;
                     case "/paciente":
                         listaP(request, response);
@@ -152,7 +150,7 @@ public class AdminController extends HttpServlet {
 
         Medico medico = new Medico(medi_email, medi_senha, medi_crm, medi_nome, medi_telefone, medi_especialidade);
         medicoDAO.insert(medico);
-        response.sendRedirect("/admin/medico");
+        response.sendRedirect(request.getContextPath()+ "/admin/medico");
     }
 
     private void atualize(HttpServletRequest request, HttpServletResponse response)
@@ -169,7 +167,7 @@ public class AdminController extends HttpServlet {
 
         Medico medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone, medi_especialidade);
         medicoDAO.update(medico);
-        response.sendRedirect("/admin/medico");
+        response.sendRedirect(request.getContextPath()+"/admin/medico");
     }
 
     private void remove(HttpServletRequest request, HttpServletResponse response)
@@ -178,7 +176,7 @@ public class AdminController extends HttpServlet {
 
         Medico medico = new Medico(id);
         medicoDAO.delete(medico);
-        response.sendRedirect("/admin/medico");
+        response.sendRedirect(request.getContextPath()+"/admin/medico");
     }
     
     
@@ -197,14 +195,14 @@ public class AdminController extends HttpServlet {
        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/paciente/formulario.jsp");
        dispatcher.forward(request, response);
     }
-//    private void apresentaFormEdicaoP(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        Long id = Long.parseLong(request.getParameter("id"));
-//        Medico medico = pacienteDAO.get(id);
-//        request.setAttribute("medico", medico);
-//        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/medico/formulario.jsp");
-//        dispatcher.forward(request, response);
-//    }
+    private void apresentaFormEdicaoP(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+        Paciente paciente = pacienteDAO.get(id);
+        request.setAttribute("paciente", paciente); 
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/logado/admin/paciente/formulario.jsp");
+        dispatcher.forward(request, response);
+    }
     
     private void insereP(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ParseException {
@@ -217,38 +215,42 @@ public class AdminController extends HttpServlet {
         String telefone = request.getParameter("telefone");
         String sexo = request.getParameter("sexo");
         
-        String data_nasc_str = request.getParameter("data");
-        DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-        Date data_nasc = new java.sql.Date(fmt.parse(data_nasc_str).getTime());
-
+        java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")); 
+        Date data_nasc = new Date(date.getTime());
+        
         Paciente paciente = new Paciente(nome, email, senha, telefone, cpf, sexo, data_nasc);
         pacienteDAO.insert(paciente);
-        response.sendRedirect("/admin/");
+        
+        response.sendRedirect(request.getContextPath()+ "/admin/paciente");
     }
-//
-//    private void atualizeP(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//
-//        request.setCharacterEncoding("UTF-8");
-//        Long medi_id = Long.parseLong(request.getParameter("id"));
-//        String medi_crm = request.getParameter("crm");
-//        String medi_nome = request.getParameter("nome");
-//        String medi_email = request.getParameter("email");
-//        String medi_senha = request.getParameter("senha");
-//        String medi_telefone = request.getParameter("telefone");
-//        String medi_especialidade = request.getParameter("especialidade");
-//
-//        Medico medico = new Medico(medi_id, medi_email, medi_senha, medi_crm, medi_nome, medi_telefone, medi_especialidade);
-//        pacienteDAO.update(medico);
-//        response.sendRedirect("lista");
-//    }
-//
-//    private void removeP(HttpServletRequest request, HttpServletResponse response)
-//            throws IOException {
-//        Long id = Long.parseLong(request.getParameter("id"));
-//
-//        Paciente livro = new Paciente(id);
-//        pacienteDAO.delete(livro);
-//        response.sendRedirect("lista");
-//    }
+
+    private void atualizeP(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, ParseException {
+
+        request.setCharacterEncoding("UTF-8");
+        Long id = Long.parseLong(request.getParameter("id"));
+        String cpf = request.getParameter("cpf");
+        String nome = request.getParameter("nome");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String telefone = request.getParameter("telefone");
+        String sexo = request.getParameter("sexo");
+        
+        java.util.Date date = new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("data")); 
+        Date data_nasc = new Date(date.getTime());
+        
+        Paciente paciente = new Paciente(id, nome, email, senha, telefone, cpf, sexo, data_nasc);
+
+        pacienteDAO.update(paciente);
+        response.sendRedirect(request.getContextPath()+ "/admin/paciente");
+    }
+
+    private void removeP(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        Long id = Long.parseLong(request.getParameter("id"));
+
+        Paciente paciente = new Paciente(id);
+        pacienteDAO.delete(paciente);
+        response.sendRedirect(request.getContextPath()+ "/admin/paciente");
+    }
 }

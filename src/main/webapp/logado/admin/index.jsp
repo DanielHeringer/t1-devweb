@@ -12,7 +12,10 @@
 
         <body>
             <a href="medico"> <fmt:message key="listar.medico"/></a>
+            <br>
             <a href="paciente"> <fmt:message key="listar.paciente"/></a>
+            <br>
+            <a href="${pageContext.request.contextPath}/logout.jsp"> Logout </a>
         </body>
 </fmt:bundle>
 </html>

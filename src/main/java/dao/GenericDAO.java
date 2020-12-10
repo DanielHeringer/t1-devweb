@@ -39,6 +39,6 @@ abstract public class GenericDAO {
     	
     	String url = "jdbc:mysql://localhost:3306/medical_schedule?useTimezone=true&serverTimezone=UTC";
     	
-    	return DriverManager.getConnection(url, "root", "");
+    	return DriverManager.getConnection(url, "root", "1234");
     }
 }

@@ -31,6 +31,11 @@ public class LoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Erro erros = new Erro();
+                
+                if(request.getRequestURI().equals("/trabalho/logout.jsp")){
+                    request.getSession().invalidate();
+                    response.sendRedirect(request.getContextPath());
+                }else{
 		if (request.getParameter("bOK") != null) {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
@@ -54,7 +59,7 @@ public class LoginController extends HttpServlet {
                                     request.getSession().setAttribute("medico", medico);                              
                                     request.getSession().setAttribute("logado", true);
                                     request.getSession().setAttribute("isAdmin", false);
-                                    response.sendRedirect("logado/medico/");
+                                    response.sendRedirect("medico/");
                                 }
                                 else{
                                     Paciente paciente = this.loginPaciente(login, senha);
@@ -63,7 +68,7 @@ public class LoginController extends HttpServlet {
                                         request.getSession().setAttribute("paciente", paciente);                              
                                         request.getSession().setAttribute("logado", true);
                                         request.getSession().setAttribute("isAdmin", false);  
-                                        response.sendRedirect("logado/paciente/");
+                                        response.sendRedirect("paciente/");
                                     }
                                     else{
                                         erros.add("Senha incorreta!");
@@ -77,6 +82,8 @@ public class LoginController extends HttpServlet {
                             this.voltaLogin(request, response, erros);
                         }
 		}
+                }
+                
 	}
         
         protected void voltaLogin(HttpServletRequest request, HttpServletResponse response, Erro erros)

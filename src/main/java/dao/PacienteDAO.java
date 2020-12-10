@@ -13,19 +13,18 @@ import java.sql.Date;
 public class PacienteDAO extends GenericDAO {
     
     public void insert(Paciente paciente) {    
-        String sql = "INSERT INTO Paciente (paci_id, paci_email, paci_senha, paci_cpf, paci_nome, paci_telefone, paci_sexo, paci_data_nascimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Paciente (paci_email, paci_senha, paci_cpf, paci_nome, paci_telefone, paci_sexo, paci_data_nascimento) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);;    
             statement = conn.prepareStatement(sql);
-            statement.setLong(1, paciente.getId());
-            statement.setString(2, paciente.getEmail());
-            statement.setString(3, paciente.getSenha());
-            statement.setString(4, paciente.getCPF());
-            statement.setString(5, paciente.getNome());
-            statement.setString(6, paciente.getTelefone());
-            statement.setString(7, paciente.getSexo());
-            statement.setDate(8, paciente.getDataNascimento());
+            statement.setString(1, paciente.getEmail());
+            statement.setString(2, paciente.getSenha());
+            statement.setString(3, paciente.getCPF());
+            statement.setString(4, paciente.getNome());
+            statement.setString(5, paciente.getTelefone());
+            statement.setString(6, paciente.getSexo());
+            statement.setDate(7, paciente.getDataNascimento());
 
             statement.executeUpdate();
             statement.close();
@@ -33,6 +32,33 @@ public class PacienteDAO extends GenericDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    
+       public Paciente get(Long paci_id) {
+    	Paciente paciente = null;
+        String sql = "SELECT * from Paciente WHERE paci_id = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setLong(1, paci_id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String paci_email = resultSet.getString("paci_email");
+                String paci_senha = resultSet.getString("paci_senha");
+                String paci_cpf = resultSet.getString("paci_cpf");
+                String paci_nome = resultSet.getString("paci_nome");
+                String paci_telefone = resultSet.getString("paci_telefone");
+                String paci_sexo = resultSet.getString("paci_sexo");
+                Date paci_data = Date.valueOf(resultSet.getString("paci_data_nascimento"));
+                paciente = new Paciente(paci_id, paci_nome, paci_email, paci_senha, paci_telefone, paci_cpf, paci_sexo, paci_data);
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return paciente;
     }
     
     public List<Paciente> getAll() {   
@@ -50,9 +76,11 @@ public class PacienteDAO extends GenericDAO {
                 String paci_nome = resultSet.getString("paci_nome");
                 String paci_telefone = resultSet.getString("paci_telefone");
                 String paci_sexo = resultSet.getString("paci_sexo");
-                Date paci_data = resultSet.getDate("paci_data_nascimento");
+                Date paci_data = Date.valueOf(resultSet.getString("paci_data_nascimento"));
 
-                Paciente paciente = new Paciente(paci_id, paci_email, paci_senha, paci_cpf, paci_nome, paci_telefone, paci_sexo, paci_data);
+                Paciente paciente = new Paciente(paci_id, paci_nome, paci_email, paci_senha, paci_telefone, paci_cpf, paci_sexo, paci_data);
+                
+                
                 listaPaciente.add(paciente);
             }
             resultSet.close();
@@ -114,7 +142,7 @@ public class PacienteDAO extends GenericDAO {
                 String paci_telefone = resultSet.getString("paci_telefone");
                 String paci_sexo = resultSet.getString("paci_sexo");
                 Date paci_data = resultSet.getDate("paci_data_nascimento");
-                paciente = new Paciente(paci_id, paci_email, paci_senha, paci_cpf, paci_nome, paci_telefone,paci_sexo, paci_data);
+                paciente = new Paciente(paci_id, paci_nome, paci_email, paci_senha, paci_telefone, paci_cpf,paci_sexo, paci_data);
             }
             resultSet.close();
             statement.close();

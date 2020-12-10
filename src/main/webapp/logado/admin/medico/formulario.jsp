@@ -20,8 +20,6 @@
 			</h1>
 			<h2>
 				<a href="lista"> <fmt:message key="table.titlem"/>
-				</a> &nbsp;&nbsp;&nbsp; <a
-					href="${pageContext.request.contextPath}/logout.jsp"> Logout
 				</a>
 			</h2>
 		</div>

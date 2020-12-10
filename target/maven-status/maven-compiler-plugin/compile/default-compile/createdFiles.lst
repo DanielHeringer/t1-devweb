@@ -1,3 +1,6 @@
-controller\BuscaporEspecialidadeController.class
+controller\AdminController.class
+controller\ConsultasController.class
+dao\ConsultaDAO.class
 bean\ListaMedicosBean.class
-controller\LoginController.class
+controller\PacienteController.class
+bean\ListaConsultasBean.class
