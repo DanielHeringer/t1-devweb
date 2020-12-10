@@ -8,6 +8,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import domain.Consulta;
+import domain.Medico;
+
+
 import java.sql.Date;
 
 
@@ -30,28 +33,36 @@ public class ConsultaDAO extends GenericDAO {
         }
     }
     
-    public List<Consulta> getAll() {   
-        List<Consulta> listaConsulta = new ArrayList<Consulta>();
-        String sql = "SELECT * from Medico ";
+    public List<Consulta> getAll(Medico medico) {
+
+        List<Consulta> listaConsultas = new ArrayList<>();
+
+        String sql = "SELECT * from Consulta c where c.medi_id = ? order by c.cons_id";
+
         try {
-            Connection conn = this.getConnection();
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+        	Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setLong(1, medico.getId());
+            ResultSet resultSet = statement.executeQuery(); 
+            
             while (resultSet.next()) {
-                Long cons_id = resultSet.getLong("cons_id");
-                Long paci_id = resultSet.getLong("paci_id");
-                Long medi_id = resultSet.getLong("medi_id");
-                Date cons_data_hora = resultSet.getDate("cons_data_hora");
-                Consulta consulta = new Consulta(cons_id, paci_id, medi_id, cons_data_hora);
-                listaConsulta.add(consulta);
+                Long id = resultSet.getLong("cons_id");
+                Long paciente = resultSet.getLong("paci_id");
+                Long medicoid = resultSet.getLong("medi_id");
+                Date data = resultSet.getDate("cons_data_hora");
+                Consulta consulta = new Consulta(id, paciente, medicoid, data, medico);
+                listaConsultas.add(consulta);
+
             }
+
             resultSet.close();
             statement.close();
             conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return listaConsulta;
+        return listaConsultas;
     }
     
     public void delete(Consulta consulta) {
@@ -132,5 +143,31 @@ public class ConsultaDAO extends GenericDAO {
             throw new RuntimeException(e);
         }
         return consulta;
+    }
+    
+    public List<Consulta> getbyMedico(Long medi_id) {
+    	Consulta consulta = null;
+    	List<Consulta> lista = new ArrayList<>();
+        String sql = "SELECT * from Consulta as c WHERE  c.medi_id = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setLong(1, medi_id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+            	Long cons_id = resultSet.getLong("cons_id");
+                Long paci_id = resultSet.getLong("paci_id");
+                Date cons_data_hora = resultSet.getDate("cons_data_hora");
+                consulta = new Consulta(cons_id, paci_id, medi_id, cons_data_hora);
+                lista.add(consulta);
+
+            }
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lista;
     }
 }

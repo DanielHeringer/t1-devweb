@@ -7,7 +7,7 @@
 <fmt:bundle basename="message">
 
 	<head>
-            <title>Pacientes</title>
+		<title> <fmt:message key="page.title"/></title>
 	</head>
 
 	<body>
@@ -16,10 +16,10 @@
 		%>
 		<div align="center">
 			<h1>
-				Bem-Vindo
+				<fmt:message key="paciente.welcome"/>
 			</h1>
 			<h2>
-				<a href="lista"> Lista de Pacientes
+				<a href="lista"> <fmt:message key="paciente.lista"/>
 				</a> &nbsp;&nbsp;&nbsp; <a
 					href="${pageContext.request.contextPath}/logout.jsp"> Logout
 				</a>

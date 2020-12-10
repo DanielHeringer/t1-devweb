@@ -49,12 +49,13 @@ public class LoginController extends HttpServlet {
                             }
                             else{
                                 Medico medico = this.loginMedico(login, senha);
+                            	System.out.println(medico);
                                 if(medico != null){
                                     //LOGIN MEDICO
                                     request.getSession().setAttribute("medico", medico);                              
                                     request.getSession().setAttribute("logado", true);
                                     request.getSession().setAttribute("isAdmin", false);
-                                    response.sendRedirect("logado/medico/");
+                                    response.sendRedirect("medico/");
                                 }
                                 else{
                                     Paciente paciente = this.loginPaciente(login, senha);
